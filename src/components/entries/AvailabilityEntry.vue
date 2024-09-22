@@ -26,7 +26,7 @@ const startYear = ref(props.item[1]);
 const endYear = ref(props.item[2]);
 
 const hasSteamLink = computed(() => {
-  return /^\d+$/.test(searchTerm.value)
+  return /^\d+/.test(searchTerm.value)
 })
 const dateText = computed(() => {
   if (startYear.value == endYear.value && startYear.value != 0 && startYear.value != -1){
@@ -49,7 +49,18 @@ const dateText = computed(() => {
 
   return `${startText} - ${endText}`
 })
-const steamLink = ref('https://steamcommunity.com/sharedfiles/filedetails/?id='+ searchTerm.value)
+
+const steamLink = computed(() => {
+  let id = '';
+  if(searchTerm.value ){
+    let match = searchTerm.value.match(/^\d+/)
+    if(match && match.length && match.length > 0){
+      id = match[0]
+    }
+  }
+  return 'https://steamcommunity.com/sharedfiles/filedetails/?id=' + id;
+})
+
 
 console.log("Availability Entry", props.item, hasSteamLink.value)
 

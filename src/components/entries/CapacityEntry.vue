@@ -35,48 +35,47 @@
 </template>
 
 <script setup>
-import IconDelete from '../icons/IconDelete.vue';
-import { ref, computed } from 'vue';
+import IconDelete from '../icons/IconDelete.vue'
+import { ref, computed } from 'vue'
 
 const props = defineProps(['item'])
 
-const searchTerm = ref(props.item[0]);
-const capactity = ref(props.item[1]);
-let cargoType = ref("");
-if(props.item.length > 2){
-  cargoType = ref(props.item[2]);
+const searchTerm = ref(props.item[0])
+const capactity = ref(props.item[1])
+let cargoType = ref('')
+if (props.item.length > 2) {
+  cargoType = ref(props.item[2])
 }
 
-
 const hasSteamLink = computed(() => {
-  return /^\d+$/.test(searchTerm.value)
+  return /^\d+/.test(searchTerm.value)
 })
 
 const capacityTxt = computed(() => {
-  if (typeof capactity.value === 'string' || capactity.value instanceof String)
-  {
+  if (typeof capactity.value === 'string' || capactity.value instanceof String) {
     // If you put the capacity in quotation marks, the original capacity will be multiplied by this value (up to a maximum of 10).
-    return capactity.value + "x";
+    return capactity.value + 'x'
   }
 
-  if(capactity.value === 0){
-    return "Excluded"
+  if (capactity.value === 0) {
+    return 'Excluded'
   }
 
-  return `(Real: ${capactity.value}) Game: ${Math.floor(capactity.value/4)}`;
-});
-
-const icon = computed(() => {
-  if (cargoType === ""){
-    return "All cargo"
-  }
-  return cargoType;
+  return `(Real: ${capactity.value}) Game: ${Math.floor(capactity.value / 4)}`
 })
-const steamLink = ref('https://steamcommunity.com/sharedfiles/filedetails/?id='+ searchTerm.value)
 
-console.log("Capacity Entry", props.item, hasSteamLink.value)
+const steamLink = computed(() => {
+  let id = ''
+  if (searchTerm.value) {
+    let match = searchTerm.value.match(/^\d+/)
+    if (match && match.length && match.length > 0) {
+      id = match[0]
+    }
+  }
+  return 'https://steamcommunity.com/sharedfiles/filedetails/?id=' + id
+})
 
-
+console.log('Capacity Entry', props.item, hasSteamLink.value)
 </script>
 
 <style scoped>
