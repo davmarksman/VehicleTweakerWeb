@@ -14,56 +14,56 @@
       <button type="button" class="btn btn-secondary ml-3" @click="toFile">Export</button>
       <h3 class="mt-2">Speed</h3>
       <div class="list-group">
-        <SpeedEntry v-for="(item, index) in configContents['speed']" :item="item" :key="index" @delete="deleteItem('speed', index)"/>
+        <SpeedEntry v-for="(item) in configContents['speed']" :item="item" :key="item.join()" @delete="deleteItem('speed', item.join())"/>
       </div>
       
 
       <h3 class="mt-2">Availability</h3>
       <div class="list-group">
-        <AvailabilityEntry v-for="(item, index) in configContents['availability']" :item="item" :key="index" @delete="deleteItem('availability', index)"/>
+        <AvailabilityEntry v-for="item in configContents['availability']" :item="item" :key="item.join()" @delete="deleteItem('availability', item.join())"/>
       </div>
 
       <h3 class="mt-2">Capacity</h3>
       <div class="list-group">
-        <CapacityEntry v-for="(item, index) in configContents['capacity']" :item="item" :key="index" @delete="deleteItem('capacity', index)"/>
+        <CapacityEntry v-for="item in configContents['capacity']" :item="item" :key="item.join()" @delete="deleteItem('capacity', item.join())"/>
       </div>
 
       <h3 class="mt-2">Load Speed</h3>
       <p>Values are per a door</p>
       <div class="list-group">
-        <LoadSpeedEntry v-for="(item, index) in configContents['loadSpeed']" :item="item" :key="index" @delete="deleteItem('loadSpeed', index)"/>
+        <LoadSpeedEntry v-for="item in configContents['loadSpeed']" :item="item" :key="item.join()" @delete="deleteItem('loadSpeed', item.join())"/>
       </div>
       
       <h3 class="mt-2">Power</h3>
       <p>Please note for aircraft values below are the idle AND maximum thrust in N instead.</p>
       <div class="list-group">
-        <PowerEntry v-for="(item, index) in configContents['power']" :item="item" :key="index" @delete="deleteItem('power', index)"/>
+        <PowerEntry v-for="item in configContents['power']" :item="item" :key="item.join()" @delete="deleteItem('power', item.join())"/>
       </div>
 
       <h3 class="mt-2">Weight</h3>
       <div class="list-group">
-        <WeightEntry v-for="(item, index) in configContents['weight']" :item="item" :key="index" @delete="deleteItem('weight', index)"/>
+        <WeightEntry v-for="item in configContents['weight']" :item="item" :key="item.join()" @delete="deleteItem('weight', item.join())"/>
       </div>
 
       <h3 class="mt-2">Price</h3>
       <div class="list-group">
-        <PriceEntry v-for="(item, index) in configContents['price']" :item="item" :key="index" @delete="deleteItem('price', index)"/>
+        <PriceEntry v-for="item in configContents['price']" :item="item" :key="item.join()" @delete="deleteItem('price', item.join())"/>
 
       </div>
 
       <h3 class="mt-2">Running Costs</h3>
       <div class="list-group">
-        <PriceEntry v-for="(item, index) in configContents['runningCosts']" :item="item" :key="index" @delete="deleteItem('runningCosts', index)"/>
+        <PriceEntry v-for="item in configContents['runningCosts']" :item="item" :key="item.join()" @delete="deleteItem('runningCosts', item.join())"/>
       </div>
 
       <h3 class="mt-2">Lifespan</h3>
       <div class="list-group">
-        <LifespanEntry v-for="(item, index) in configContents['lifespan']" :item="item" :key="index" @delete="deleteItem('lifespan', index)"/>
+        <LifespanEntry v-for="item in configContents['lifespan']" :item="item" :key="item.join()" @delete="deleteItem('lifespan', item.join())"/>
       </div>
 
       <h3 class="mt-2">Reversible</h3>
       <div class="list-group">
-        <ReversibleEntry v-for="(item, index) in configContents['reversible']" :item="item" :key="index" @delete="deleteItem('reversible', index)"/>
+        <ReversibleEntry v-for="item in configContents['reversible']" :item="item" :key="item.join()" @delete="deleteItem('reversible', item.join())"/>
       </div>
     </div>
   </div>
@@ -90,7 +90,6 @@ import PowerEntry from './entries/PowerEntry.vue'
 import Editor from './editors/Editor.vue'
 
 let resultTxt = ref('')
-// let state = ref('introState')
 let state = ref('introState')
 
 let configContents = ref({
@@ -126,9 +125,18 @@ function toFile() {
   state.value = 'export'
 }
 
-function deleteItem(section, idx){
-  console.log(`Deleteing ${section} @ ${idx}`)
-  configContents.value[section].splice(idx, 1)
+
+function deleteItem(section, toRemoveKey){
+  console.log(`Deleteing ${section} @ ${toRemoveKey}`)
+  let array = configContents.value[section];
+  for (let index = 0; index < array.length; index++) {
+    const entry = array[index];
+    let key = entry.join();
+    if(key == toRemoveKey){
+      array.splice(index, 1)
+      return;
+    }
+  }
 }
 
 function showEditor(){
