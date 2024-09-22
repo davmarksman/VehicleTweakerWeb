@@ -77,5 +77,6 @@ import IconClipboard from './icons/IconClipboard.vue'
     <br/>
     Got stuck? Ask your question on 
     <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2668633703" target="_blank" rel="noopener">Steam</a>
+    GitHub Repo: <a href="https://github.com/davmarksman/VehicleTweakerWeb">Github</a>
   </WelcomeItem>
 </template>
