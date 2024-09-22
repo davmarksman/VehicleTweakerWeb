@@ -5,84 +5,77 @@ import ToolingIcon from './icons/IconTooling.vue'
 import EcosystemIcon from './icons/IconEcosystem.vue'
 import CommunityIcon from './icons/IconCommunity.vue'
 import SupportIcon from './icons/IconSupport.vue'
+import IconFile from './icons/IconFile.vue'
+import IconClipboard from './icons/IconClipboard.vue'
 </script>
 
 <template>
-  <WelcomeItem>
-    <template #icon>
-      <DocumentationIcon />
-    </template>
-    <template #heading>Documentation</template>
-
-    Vue’s
-    <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
-    provides you with all information you need to get started.
-  </WelcomeItem>
+  <h1 class="h2">Editor for Transport Fever 2 Vehicle Tweaker Mod by WernerK</h1>
 
   <WelcomeItem>
     <template #icon>
       <ToolingIcon />
     </template>
-    <template #heading>Tooling</template>
+    <template #heading>1. Install Mod</template>
+    <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2668633703">Vehicle Tweaker Mod on steam</a>
+  </WelcomeItem>
 
-    This project is served and bundled with
-    <a href="https://vitejs.dev/guide/features.html" target="_blank" rel="noopener">Vite</a>. The
-    recommended IDE setup is
-    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a> +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank" rel="noopener">Volar</a>. If
-    you need to test your components and web pages, check out
-    <a href="https://www.cypress.io/" target="_blank" rel="noopener">Cypress</a> and
-    <a href="https://on.cypress.io/component" target="_blank" rel="noopener"
-      >Cypress Component Testing</a
-    >.
+  <WelcomeItem>
+    <template #icon>
+      <IconFile />
+    </template>
+    <template #heading>2. Find the <i>wkvt_settings.lua</i> file in the mods folder</template>
 
+    Check here to find the mod directory: <a href="https://www.transportfever2.com/wiki/doku.php?id=gamemanual:gamefilelocations#overview">https://www.transportfever2.com/wiki/doku.php?id=gamemanual:gamefilelocations#overview</a>
     <br />
-
-    More instructions are available in <code>README.md</code>.
+    Then its:
+    <ul>
+      <li>Steam:   /2668633703/res/scripts/wkvt_settings.lua</li>
+      <li>Downloaded: /wk_vehicle_tweaker_1/res/scripts/wkvt_settings.lua</li>
+    </ul>
   </WelcomeItem>
 
   <WelcomeItem>
     <template #icon>
-      <EcosystemIcon />
+      <IconClipboard />
     </template>
-    <template #heading>Ecosystem</template>
+    <template #heading>3. Copy the contents of the file into this tool</template>
 
-    Get official tools and libraries for your project:
-    <a href="https://pinia.vuejs.org/" target="_blank" rel="noopener">Pinia</a>,
-    <a href="https://router.vuejs.org/" target="_blank" rel="noopener">Vue Router</a>,
-    <a href="https://test-utils.vuejs.org/" target="_blank" rel="noopener">Vue Test Utils</a>, and
-    <a href="https://github.com/vuejs/devtools" target="_blank" rel="noopener">Vue Dev Tools</a>. If
-    you need more resources, we suggest paying
-    <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">Awesome Vue</a>
-    a visit.
+    Open the file in a text editor and then copy the contents of the file.
+    <br/>
+    Click on the "Paste File" button below and paste the contents into the text box in that window. Click "Upload" when done.
+    <br/>
+    You can also start from scratch by clicking the create new button.
   </WelcomeItem>
 
-  <WelcomeItem>
-    <template #icon>
-      <CommunityIcon />
-    </template>
-    <template #heading>Community</template>
+<WelcomeItem>
+  <template #icon>
+    <EcosystemIcon />
+  </template>
+  <template #heading>4. Edit the file in this tool</template>
 
-    Got stuck? Ask your question on
-    <a href="https://chat.vuejs.org" target="_blank" rel="noopener">Vue Land</a>, our official
-    Discord server, or
-    <a href="https://stackoverflow.com/questions/tagged/vue.js" target="_blank" rel="noopener"
-      >StackOverflow</a
-    >. You should also subscribe to
-    <a href="https://news.vuejs.org" target="_blank" rel="noopener">our mailing list</a> and follow
-    the official
-    <a href="https://twitter.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
-    twitter account for latest news in the Vue world.
-  </WelcomeItem>
+  Then export the results when you are done
+</WelcomeItem>
+
+<WelcomeItem>
+  <template #icon>
+    <DocumentationIcon />
+  </template>
+  <template #heading>5. Replace the contents of your <i>wkvt_settings.lua</i></template>
+
+  Copy the text from the tool and replace the contents of your wkvt_settings.lua file with it
+  <br/>
+  You then need to reload your save game for changes to take place  
+</WelcomeItem>
 
   <WelcomeItem>
     <template #icon>
       <SupportIcon />
     </template>
-    <template #heading>Support Vue</template>
-
-    As an independent project, Vue relies on community backing for its sustainability. You can help
-    us by
-    <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
+    <template #heading>That's All</template>
+    Enjoy! All credit to WernerK for creating an incredible mod
+    <br/>
+    Got stuck? Ask your question on 
+    <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2668633703" target="_blank" rel="noopener">Steam</a>
   </WelcomeItem>
 </template>
