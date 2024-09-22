@@ -164,14 +164,12 @@
 
 <script setup>
 
-
-import { Alert } from "bootstrap";
 import { ref, defineEmits, computed } from "vue";
 const emit = defineEmits(['insert'])
 
 const searchTerm = ref('');
 const steamLink = ref('');
-const selected = ref('capacity');
+const selected = ref('speed');
 const numberVal = ref(0);
 const numberVal2 = ref(0);
 const startYear = ref(-1);
@@ -267,7 +265,7 @@ function addEntry(){
         }   
 
         // 3rd param
-        if(selectedCargoType !== "UNCHANGED"){
+        if(selectedCargoType.value !== "UNCHANGED"){
             values.push(selectedCargoType.value)
         }
     } 
