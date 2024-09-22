@@ -120,6 +120,7 @@
                         <div class="form-group mt-3" v-if="capacityAction!=='exclude'">
                             <label for="inCapacity">Capacity. This number will be divided by 4 to get the in game capacity.</label>
                             <input class="form-control" id="inCapacity" type="number" v-model="capacityVal">
+                            <small>Note: With Multiple Units this will be value per a carriage/unit.</small>
                         </div>
 
                         <div class="form-group mt-3">
