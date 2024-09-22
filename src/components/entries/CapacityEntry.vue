@@ -1,6 +1,6 @@
 <template>
 
-  <button class="list-group-item list-group-item-action flex-column align-items-start"
+  <div class="list-group-item list-group-item-action flex-column align-items-start"
     style="padding-top: 6px; padding-bottom: 6px;">
     <div>
       <div class="d-flex justify-content-between" style="margin-right: 50px;">
@@ -31,7 +31,7 @@
       </div>
       <IconDelete @click="$emit('delete')"  class="icon"/>
     </div>
-  </button>
+  </div>
 </template>
 
 <script setup>
@@ -74,7 +74,7 @@ const icon = computed(() => {
 })
 const steamLink = ref('https://steamcommunity.com/sharedfiles/filedetails/?id='+ searchTerm.value)
 
-console.log("Availability Entry", props.item, hasSteamLink.value)
+console.log("Capacity Entry", props.item, hasSteamLink.value)
 
 
 </script>
