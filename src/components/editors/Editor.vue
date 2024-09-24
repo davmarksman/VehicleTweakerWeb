@@ -192,7 +192,7 @@
                   <li>FUEL <a class="use-link" @click="selectedCargoType = 'FUEL'">use</a></li>
                   <li>CRUDE <a class="use-link" @click="selectedCargoType = 'CRUDE'">use</a></li>
                 </ul>
-                You can also type in custom cargo types
+                Note: You can't add a new cargo type to a vehicle. You can only change existing cargo types on the vehicle
               </small>
             </div>
           </div>
