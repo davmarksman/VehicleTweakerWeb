@@ -136,7 +136,7 @@
               <input class="form-check-input" type="radio" name="capacityRadio" id="capacityRadio3" value="multiplier"
                 v-model="capacityAction" />
               <label class="form-check-label" for="capacityRadio3">
-                <small>Multiply the original capacity will by this value (up to a maximum of 10)</small>
+                <small>Multiply the original capacity will by this value</small>
               </label>
             </div>
             <div class="form-check">
@@ -148,9 +148,9 @@
             </div>
 
             <div class="form-group mt-3" v-if="capacityAction !== 'exclude'">
-              <label for="inCapacity">Capacity. This number will be divided by 4 to get the in game capacity.</label>
+              <label for="inCapacity">{{ capactityText }}</label>
               <input class="form-control" id="inCapacity" type="number" v-model="capacityVal" />
-              <small>Note: With Multiple Units this will be value per a carriage/unit.</small>
+              <small>Note: With Multiple Units this will be per a carriage/unit.</small>
             </div>
 
             <div class="form-group mt-3">
@@ -307,6 +307,15 @@ const numberInputText = computed(() => {
   }
   return ''
 })
+
+const capactityText = computed(() => {
+  if (capacityAction && capacityAction.value && capacityAction.value === 'multiplier')
+  {
+    return "Capacity multiplier (up to a maximum of 10):"
+  }
+
+  return "Capacity. This number will be divided by 4 to get the in game capacity:";
+});
 
 const isValid = computed(() => {
   if (searchTerm.value === '' && steamLink.value === '') return false
