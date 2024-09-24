@@ -11,13 +11,18 @@
         <h5 v-else class="mb-1">{{ searchTerm }}</h5>
         <small>{{ weight }}t</small>
       </div>
-      <IconDelete @click="$emit('delete')" class="icon" />
+
+      <div class="icon">
+        <IconEntryEdit @click="$emit('edit')" />
+        <IconDelete @click="$emit('delete')" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import IconDelete from '../icons/IconDelete.vue'
+import IconEntryEdit from '../icons/IconEntryEdit.vue'
 import { ref, computed } from 'vue'
 
 const props = defineProps(['item'])

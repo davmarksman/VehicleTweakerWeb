@@ -12,13 +12,17 @@
         <small v-if="tractive > 0">Tractive: {{ tractive }}kN</small>
         <small>{{ power }}kW</small>
       </div>
-      <IconDelete @click="$emit('delete')" class="icon" />
+      <div class="icon">
+        <IconEntryEdit @click="$emit('edit')" />
+        <IconDelete @click="$emit('delete')" />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import IconDelete from '../icons/IconDelete.vue'
+import IconEntryEdit from '../icons/IconEntryEdit.vue'
 import { ref, computed } from 'vue'
 
 const props = defineProps(['item'])
