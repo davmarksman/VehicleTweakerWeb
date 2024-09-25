@@ -364,9 +364,8 @@ function addEntry() {
 
     // 2nd param
     if (typeof capacityVal.value === 'string' || capacityVal.value instanceof String ){
-      // Replace all non number chars;
-      capacityVal.value = capacityVal.value.replace(/\D+/g, '');
-      if(capacityVal.value === ''){
+      capacityVal.value = capacityVal.value.replace("'", "");
+      if(!isNumeric(capacityVal)){
         capacityVal.value = '0';
       }
     };
@@ -417,6 +416,12 @@ function onKeyCapacity(){
   if((typeof val === 'string' || val instanceof String ) && val.startsWith("'")){
     capacityAction.value = 'multiplier'
   }
+}
+
+function isNumeric(str) {
+  if (typeof str != "string") return false // we only process strings!  
+  return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+         !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
 }
 
 </script>
