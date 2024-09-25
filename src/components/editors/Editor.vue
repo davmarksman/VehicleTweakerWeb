@@ -149,7 +149,7 @@
 
             <div class="form-group mt-3" v-if="capacityAction !== 'exclude'">
               <label for="inCapacity">{{ capactityText }}</label>
-              <input class="form-control" id="inCapacity" type="number" v-model="capacityVal" />
+              <input class="form-control" id="inCapacity" v-model="capacityVal"  @keyup="onKeyCapacity"/>
               <small>Note: With Multiple Units this will be per a carriage/unit.</small>
             </div>
 
@@ -265,7 +265,7 @@ if (props.itemToEdit) {
     // 2nd param
     if (entry[1] === 0) {
       capacityAction.value = 'exclude'
-    } else if (entry[1] === 'string' || entry[1] instanceof String) {
+    } else if (typeof entry[1] === 'string' || entry[1] instanceof String) {
       capacityAction.value = 'multiplier'
       capacityVal.value = entry[1]
     } else {
@@ -320,10 +320,7 @@ const capactityText = computed(() => {
 const isValid = computed(() => {
   if (searchTerm.value === '' && steamLink.value === '') return false
 
-  if (
-    steamLink.value !== '' &&
-    !steamLink.value.includes('https://steamcommunity.com/sharedfiles/filedetails')
-  ) {
+  if (steamLink.value !== '' && !steamLink.value.includes('https://steamcommunity.com/sharedfiles/filedetails')) {
     return false
   }
 
@@ -366,6 +363,14 @@ function addEntry() {
     vehicleConfigVals = [searchTerm.value]
 
     // 2nd param
+    if (typeof capacityVal.value === 'string' || capacityVal.value instanceof String ){
+      // Replace all non number chars;
+      capacityVal.value = capacityVal.value.replace(/\D+/g, '');
+      if(capacityVal.value === ''){
+        capacityVal.value = '0';
+      }
+    };
+
     if (capacityAction.value === 'exclude') {
       vehicleConfigVals.push(0)
     } else if (capacityAction.value === 'multiplier') {
@@ -405,6 +410,15 @@ const availabilityText = computed(() => {
 
   return `${startText} - ${endText}`
 })
+
+function onKeyCapacity(){
+  console.log('onKeyCapacity');
+  let val = capacityVal.value;
+  if((typeof val === 'string' || val instanceof String ) && val.startsWith("'")){
+    capacityAction.value = 'multiplier'
+  }
+}
+
 </script>
 
 <style scoped>
