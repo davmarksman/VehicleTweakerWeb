@@ -363,19 +363,17 @@ function addEntry() {
     vehicleConfigVals = [searchTerm.value]
 
     // 2nd param
-    if (typeof capacityVal.value === 'string' || capacityVal.value instanceof String ){
-      capacityVal.value = capacityVal.value.replace("'", "");
-      if(!isNumeric(capacityVal)){
-        capacityVal.value = '0';
-      }
-    };
+    let finalCapacityNum = getCapacityValueAsNum(capacityVal.value)
 
-    if (capacityAction.value === 'exclude') {
+    if (capacityAction.value === 'multiplier') {
+      if (finalCapacityNum > 10){
+        finalCapacityNum = 10;
+      }
+      vehicleConfigVals.push(String(finalCapacityNum))
+    } else if (capacityAction.value === 'exclude') {
       vehicleConfigVals.push(0)
-    } else if (capacityAction.value === 'multiplier') {
-      vehicleConfigVals.push(String(capacityVal.value))
     } else {
-      vehicleConfigVals.push(Number(capacityVal.value))
+      vehicleConfigVals.push(Number(finalCapacityNum))
     }
 
     // 3rd param
@@ -422,6 +420,21 @@ function isNumeric(str) {
   if (typeof str != "string") return false // we only process strings!  
   return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
          !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+}
+
+function getCapacityValueAsNum(val){
+  let finalCapacityNum = 0;
+  if (typeof val === 'string' || val instanceof String ){
+    let cleanRes = val.replaceAll("'", "");
+    if(isNumeric(cleanRes)){
+      finalCapacityNum = Number(cleanRes)
+    }
+  };
+
+  if (finalCapacityNum <0)
+    finalCapacityNum = 0;
+
+  return finalCapacityNum;
 }
 
 </script>
