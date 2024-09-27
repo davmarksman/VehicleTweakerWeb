@@ -3,8 +3,8 @@
     <div v-if="state === 'introState'">
       <TheWelcome />
       <div class="mt-4">
-        <button type="button" class="btn btn-primary" @click="uploadState">Paste File</button>
-        <button type="button" class="btn btn-secondary" @click="createNew">Create New</button>
+        <button type="button" class="btn btn-primary" @click="uploadState">Upload File</button>
+        <button type="button" class="btn btn-secondary ml-3" @click="createNew">Create New</button>
       </div>
     </div>
     <UploadData v-if="state === 'uploadState'" @upload="uploadFile" />
@@ -82,11 +82,11 @@
 </template>
 
 <script setup>
-import UploadData from './UploadData.vue'
-import Results from './Results.vue'
+import UploadData from './UploadPage.vue'
+import Results from './ExportPage.vue'
 import { ref, defineProps } from 'vue'
 import { toLuaConfigFile, readConfigFile } from './functions/fileIntrepreter.js'
-import TheWelcome from './TheWelcome.vue'
+import TheWelcome from './Introduction.vue'
 import SpeedEntry from './entries/SpeedEntry.vue'
 import AvailabilityEntry from './entries/AvailabilityEntry.vue'
 import CapacityEntry from './entries/CapacityEntry.vue'

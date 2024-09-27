@@ -33,6 +33,10 @@ import IconClipboard from './icons/IconClipboard.vue'
       <li>Steam:   /2668633703/res/scripts/wkvt_settings.lua</li>
       <li>Downloaded: /wk_vehicle_tweaker_1/res/scripts/wkvt_settings.lua</li>
     </ul>
+    <div class="alert alert-primary" role="alert">
+      <small>C:\Program Files (x86)\Steam\steamapps\workshop\content\1066780\2668633703\res\scripts</small>
+    </div>
+    
   </WelcomeItem>
 
   <WelcomeItem>
